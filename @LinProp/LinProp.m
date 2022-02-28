@@ -1,6 +1,6 @@
 % Metas.UncLib.Matlab.LinProp V2.5.3
 % Michael Wollensack METAS - 25.02.2022
-% Dion Timmermann PTB - 24.02.2022
+% Dion Timmermann PTB - 28.02.2022
 %
 % LinProp Const:
 % a = LinProp(value)
@@ -516,7 +516,8 @@ classdef LinProp
             %   of that size.
         
             if any(strcmp('.', {S.type}))
-                error('Dot indexing is not supported for variables of this type.');
+                C = builtin('subsasgn', A, S, B);
+                return;
             elseif any(strcmp('{}', {S.type}))
                 error('Brace indexing is not supported for variables of this type.');
             elseif length(S) > 1
